@@ -2,6 +2,7 @@
 
 module Puzzles.Puzzles
   ( applySolution,
+    benchmarkSolution,
     Day (..),
     inputPath,
     mkPuzzleSpec,
@@ -16,6 +17,7 @@ module Puzzles.Puzzles
   )
 where
 
+import Criterion
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import System.Directory
@@ -69,6 +71,11 @@ data SomeSolution where
 
 applySolution :: SomeSolution -> T.Text -> String
 applySolution (MkSomeSolution (PuzzleSolve parse solve)) input = show . solve $ parse input
+
+benchmarkSolution :: SomeSolution -> T.Text -> IO ()
+benchmarkSolution (MkSomeSolution (PuzzleSolve parse solve)) input = do
+  let parsed = parse input
+  benchmark $ whnf solve parsed
 
 data TestCase = TestCase
   { _input :: T.Text,

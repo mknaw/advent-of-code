@@ -1,12 +1,21 @@
 module Main where
 
-import Control.Monad (forM_)
+import Control.Monad
 import qualified Data.Text.IO as T
 import Lib.Parse (parseInput, parseTestCases)
 import Options.Applicative
 import Puzzles.Map
 import Puzzles.Puzzles
 import qualified System.Console.ANSI as ANSI
+
+data RunOpts = RunOpts
+  { _day :: Day,
+    _part :: PuzzlePart,
+    _bench :: Bool
+  }
+
+puzzleSpecFrom :: RunOpts -> PuzzleSpec
+puzzleSpecFrom (RunOpts day part _) = PuzzleSpec day part
 
 readDay :: ReadM Day
 readDay = eitherReader $ \d -> Right . Day $ (read d :: Int)
@@ -19,10 +28,9 @@ readPart = eitherReader f
     f "b" = Right PartB
     f _ = Left "Invalid part"
 
--- TODO add an opt to skip tests?
-problemSpecParser :: Parser PuzzleSpec
-problemSpecParser =
-  PuzzleSpec
+runOptsParser :: Parser RunOpts
+runOptsParser =
+  RunOpts
     <$> option
       readDay
       ( long "day"
@@ -35,7 +43,12 @@ problemSpecParser =
         ( long "part"
             <> short 'p'
             <> metavar "PART"
-            <> help "Run PART"
+            <> help "Run PART - should be 'a' or 'b'"
+        )
+      <*> switch
+        ( long "bench"
+            <> short 'b'
+            <> help "Whether to run benchmarks"
         )
 
 withColor :: ANSI.Color -> IO () -> IO ()
@@ -65,7 +78,8 @@ runTests ps solution = do
 
 main :: IO ()
 main = do
-  ps <- execParser $ info (problemSpecParser <**> helper) fullDesc
+  runOpts <- execParser $ info (runOptsParser <**> helper) fullDesc
+  let ps = puzzleSpecFrom runOpts
   let solution = getPuzzleSolution ps
   testsPass <-
     testInputExists ps >>= \case
@@ -78,5 +92,6 @@ main = do
       input <- readInput ps
       let solved = applySolution solution input
       putStrLn $ show ps <> ": " <> solved
+      when (_bench runOpts) $ benchmarkSolution solution input
     else withColor ANSI.Red (putStrLn "Tests failed :(")
   return ()
