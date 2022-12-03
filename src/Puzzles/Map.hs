@@ -4,7 +4,7 @@ module Puzzles.Map
 where
 
 import Puzzles.Day01
--- import Puzzles.Day02
+import Puzzles.Day02
 -- import Puzzles.Day03
 -- import Puzzles.Day04
 -- import Puzzles.Day05
@@ -33,4 +33,6 @@ import Puzzles.Puzzles
 getPuzzleSolve :: PuzzleSpec -> SomeSolution
 getPuzzleSolve (PuzzleSpec (Day 1) PartA) = MkSomeSolution day01aSolve
 getPuzzleSolve (PuzzleSpec (Day 1) PartB) = MkSomeSolution day01bSolve
-getPuzzleSolve _ = undefined
+getPuzzleSolve (PuzzleSpec (Day 2) PartA) = MkSomeSolution day02aSolve
+getPuzzleSolve (PuzzleSpec (Day 2) PartB) = MkSomeSolution day02bSolve
+getPuzzleSolve _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?

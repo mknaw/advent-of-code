@@ -43,6 +43,7 @@ library
     hs-source-dirs:   src
     exposed-modules:
         Puzzles.Day01
+        Puzzles.Day02
         Puzzles.Map
         Puzzles.Puzzles
         Lib.Parse
