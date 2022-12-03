@@ -1,5 +1,5 @@
 module Puzzles.Map
-  ( getPuzzleSolve,
+  ( getPuzzleSolution,
   )
 where
 
@@ -31,11 +31,11 @@ import Puzzles.Day03
 import Puzzles.Puzzles
 
 -- TODO figure out some programmatic way to do this? Maybe TH?
-getPuzzleSolve :: PuzzleSpec -> SomeSolution
-getPuzzleSolve (PuzzleSpec (Day 1) PartA) = MkSomeSolution day01aSolve
-getPuzzleSolve (PuzzleSpec (Day 1) PartB) = MkSomeSolution day01bSolve
-getPuzzleSolve (PuzzleSpec (Day 2) PartA) = MkSomeSolution day02aSolve
-getPuzzleSolve (PuzzleSpec (Day 2) PartB) = MkSomeSolution day02bSolve
-getPuzzleSolve (PuzzleSpec (Day 3) PartA) = MkSomeSolution day03aSolve
-getPuzzleSolve (PuzzleSpec (Day 3) PartB) = MkSomeSolution day03bSolve
-getPuzzleSolve _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?
+getPuzzleSolution :: PuzzleSpec -> SomeSolution
+getPuzzleSolution (PuzzleSpec (Day 1) PartA) = MkSomeSolution day01aSolve
+getPuzzleSolution (PuzzleSpec (Day 1) PartB) = MkSomeSolution day01bSolve
+getPuzzleSolution (PuzzleSpec (Day 2) PartA) = MkSomeSolution day02aSolve
+getPuzzleSolution (PuzzleSpec (Day 2) PartB) = MkSomeSolution day02bSolve
+getPuzzleSolution (PuzzleSpec (Day 3) PartA) = MkSomeSolution day03aSolve
+getPuzzleSolution (PuzzleSpec (Day 3) PartB) = MkSomeSolution day03bSolve
+getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?
