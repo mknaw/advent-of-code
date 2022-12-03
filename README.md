@@ -6,7 +6,7 @@ build with cabal, invoke with args `--day \d+ --part a|b`
 | --- | - | - |
 | 1   | ✔ | ✔ |
 | 2   | ✔ | ✔ |
-| 3   |   |   |
+| 3   | ✔ | ✔ |
 | 4   |   |   |
 | 5   |   |   |
 | 6   |   |   |

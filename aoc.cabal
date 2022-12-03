@@ -34,6 +34,7 @@ common common-options
         base ^>=4.14.3.0
         , containers
         , megaparsec
+        , split
         , text
     default-extensions:
         OverloadedStrings
@@ -44,6 +45,29 @@ library
     exposed-modules:
         Puzzles.Day01
         Puzzles.Day02
+        Puzzles.Day03
+        -- Puzzles.Day04
+        -- Puzzles.Day05
+        -- Puzzles.Day06
+        -- Puzzles.Day07
+        -- Puzzles.Day08
+        -- Puzzles.Day09
+        -- Puzzles.Day10
+        -- Puzzles.Day11
+        -- Puzzles.Day12
+        -- Puzzles.Day13
+        -- Puzzles.Day14
+        -- Puzzles.Day15
+        -- Puzzles.Day16
+        -- Puzzles.Day17
+        -- Puzzles.Day18
+        -- Puzzles.Day19
+        -- Puzzles.Day20
+        -- Puzzles.Day21
+        -- Puzzles.Day22
+        -- Puzzles.Day23
+        -- Puzzles.Day24
+        -- Puzzles.Day25
         Puzzles.Map
         Puzzles.Puzzles
         Lib.Parse
