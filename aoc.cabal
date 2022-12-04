@@ -50,6 +50,9 @@ library
     import:           common-options
     hs-source-dirs:   src
     exposed-modules:
+        Lib.Console
+        Lib.Parse
+        Lib.Utils
         Puzzles.Day01
         Puzzles.Day02
         Puzzles.Day03
@@ -77,8 +80,7 @@ library
         -- Puzzles.Day25
         Puzzles.Map
         Puzzles.Puzzles
-        Lib.Parse
-        Lib.Utils
+        Puzzles.Test
 
 executable aoc-exe
     import:           common-options

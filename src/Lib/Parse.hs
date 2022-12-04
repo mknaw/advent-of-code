@@ -12,7 +12,7 @@ import Data.Text
 import Data.Void
 import Text.Megaparsec
 import Text.Megaparsec.Char
-import Puzzles.Puzzles
+import Puzzles.Test
 
 type Parser = Parsec Void Text
 

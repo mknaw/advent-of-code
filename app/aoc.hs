@@ -2,11 +2,12 @@ module Main where
 
 import Control.Monad
 import qualified Data.Text.IO as T
+import Lib.Console
 import Lib.Parse (parseInput, parseTestCases)
 import Options.Applicative
 import Puzzles.Map
 import Puzzles.Puzzles
-import qualified System.Console.ANSI as ANSI
+import Puzzles.Test
 
 data RunOpts = RunOpts
   { _puzzleSpec :: PuzzleSpec,
@@ -60,30 +61,14 @@ runOptsParser = do
       )
   return $ RunOpts _puzzleSpec _bench _skipTests
 
-withColor :: ANSI.Color -> IO () -> IO ()
-withColor color act = do
-  ANSI.setSGR [ANSI.SetColor ANSI.Foreground ANSI.Vivid color]
-  act
-  ANSI.setSGR [ANSI.Reset]
-
-runTestCase :: SomeSolution -> TestCase -> Bool
-runTestCase solution (TestCase input expected) =
-  let actual = applySolution solution input
-   in actual == expected
-
 runTests :: PuzzleSpec -> SomeSolution -> IO Bool
 runTests ps solution = do
-  putStr "Running tests..."
+  putStrLn "Running tests..."
   testInput <- T.readFile $ testPath ps
   let testCases = parseInput parseTestCases testInput
   let results = runTestCase solution <$> testCases
-  forM_ results $ \res ->
-    if res
-      then withColor ANSI.Green (putStr " ✔")
-      else -- TODO would be good to show the actual vs expected for failures
-        withColor ANSI.Red (putStr " ✗")
-  putStrLn ""
-  return $ and results
+  forM_ results showTestResult
+  return $ and (wasSuccess <$> results)
 
 main :: IO ()
 main = do
@@ -100,5 +85,5 @@ main = do
       let solved = applySolution solution input
       putStrLn $ show ps <> ": " <> solved
       when doBench $ benchmarkSolution solution input
-    else withColor ANSI.Red $ putStrLn "Tests failed :("
+    else red $ putStrLn "Tests failed :("
   return ()
