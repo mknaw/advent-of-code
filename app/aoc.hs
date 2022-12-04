@@ -9,13 +9,10 @@ import Puzzles.Puzzles
 import qualified System.Console.ANSI as ANSI
 
 data RunOpts = RunOpts
-  { _day :: Day,
-    _part :: PuzzlePart,
-    _bench :: Bool
+  { _puzzleSpec :: PuzzleSpec,
+    _bench :: Bool,
+    _skipTests :: Bool
   }
-
-puzzleSpecFrom :: RunOpts -> PuzzleSpec
-puzzleSpecFrom (RunOpts day part _) = PuzzleSpec day part
 
 readDay :: ReadM Day
 readDay = eitherReader $ \d -> Right . Day $ (read d :: Int)
@@ -28,28 +25,40 @@ readPart = eitherReader f
     f "b" = Right PartB
     f _ = Left "Invalid part"
 
-runOptsParser :: Parser RunOpts
-runOptsParser =
-  RunOpts
+puzzleSpecParser :: Parser PuzzleSpec
+puzzleSpecParser =
+  PuzzleSpec
     <$> option
       readDay
       ( long "day"
           <> short 'd'
-          <> help "Which day to solve"
-          <> metavar "INT"
+          <> metavar "DAY"
+          <> help "Day to run"
       )
-      <*> option
-        readPart
-        ( long "part"
-            <> short 'p'
-            <> metavar "PART"
-            <> help "Run PART - should be 'a' or 'b'"
-        )
-      <*> switch
-        ( long "bench"
-            <> short 'b'
-            <> help "Whether to run benchmarks"
-        )
+    <*> option
+      readPart
+      ( long "part"
+          <> short 'p'
+          <> metavar "PART"
+          <> help "Part to run"
+      )
+
+runOptsParser :: Parser RunOpts
+runOptsParser = do
+  _puzzleSpec <- puzzleSpecParser
+  _bench <-
+    switch
+      ( long "bench"
+          <> short 'b'
+          <> help "Whether to run benchmarks"
+      )
+  _skipTests <-
+    switch
+      ( long "skip-tests"
+          <> short 'T'
+          <> help "Skip tests"
+      )
+  return $ RunOpts _puzzleSpec _bench _skipTests
 
 withColor :: ANSI.Color -> IO () -> IO ()
 withColor color act = do
@@ -78,20 +87,18 @@ runTests ps solution = do
 
 main :: IO ()
 main = do
-  runOpts <- execParser $ info (runOptsParser <**> helper) fullDesc
-  let ps = puzzleSpecFrom runOpts
+  RunOpts ps doBench skipTests <- execParser $ info (runOptsParser <**> helper) fullDesc
   let solution = getPuzzleSolution ps
-  testsPass <-
-    testInputExists ps >>= \case
-      True -> runTests ps solution
-      False -> do
-        putStrLn "No tests found"
-        return True
-  if testsPass
+  testInputExists' <- testInputExists ps
+  shouldRun <-
+    if testInputExists' && not skipTests
+      then runTests ps solution
+      else return True
+  if shouldRun
     then do
       input <- readInput ps
       let solved = applySolution solution input
       putStrLn $ show ps <> ": " <> solved
-      when (_bench runOpts) $ benchmarkSolution solution input
-    else withColor ANSI.Red (putStrLn "Tests failed :(")
+      when doBench $ benchmarkSolution solution input
+    else withColor ANSI.Red $ putStrLn "Tests failed :("
   return ()

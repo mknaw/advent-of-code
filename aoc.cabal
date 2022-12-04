@@ -41,7 +41,9 @@ common common-options
         , split ==0.2.*
         , text ==1.2.*
     default-extensions:
+        ApplicativeDo
         LambdaCase
+        NamedFieldPuns
         OverloadedStrings
 
 library
