@@ -28,7 +28,7 @@ common common-options
                          -Widentities
                          -Wincomplete-uni-patterns
                          -Wincomplete-record-updates
-                         -Wno-partial-type-signatures
+                         -Wno-unused-do-bind
 
     build-depends:
         base ^>=4.14.3.0
@@ -53,7 +53,7 @@ library
         Puzzles.Day01
         Puzzles.Day02
         Puzzles.Day03
-        -- Puzzles.Day04
+        Puzzles.Day04
         -- Puzzles.Day05
         -- Puzzles.Day06
         -- Puzzles.Day07
