@@ -39,6 +39,7 @@ common common-options
         , filepath ==1.4.*
         , fin ==0.2.*
         , megaparsec ==9.2.*
+        , mtl ==2.2.*
         , split ==0.2.*
         , text ==1.2.*
     default-extensions:
@@ -52,6 +53,7 @@ library
     hs-source-dirs:   src
     exposed-modules:
         Lib.Console
+        Lib.Counter
         Lib.Parse
         Lib.Utils
         Puzzles.Day01
@@ -59,7 +61,7 @@ library
         Puzzles.Day03
         Puzzles.Day04
         Puzzles.Day05
-        -- Puzzles.Day06
+        Puzzles.Day06
         -- Puzzles.Day07
         -- Puzzles.Day08
         -- Puzzles.Day09

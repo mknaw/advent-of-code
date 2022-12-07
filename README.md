@@ -11,7 +11,7 @@ arbitrary testing data can be added under `data/test/\d+[ab].txt`
 | 3   | ✔ | ✔ |
 | 4   | ✔ | ✔ |
 | 5   | ✔ | ✔ |
-| 6   |   |   |
+| 6   | ✔ | ✔ |
 | 7   |   |   |
 | 8   |   |   |
 | 9   |   |   |
