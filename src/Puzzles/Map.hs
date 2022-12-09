@@ -10,7 +10,7 @@ import Puzzles.Day04
 import Puzzles.Day05
 import Puzzles.Day06
 import Puzzles.Day07
--- import Puzzles.Day08
+import Puzzles.Day08
 -- import Puzzles.Day09
 -- import Puzzles.Day10
 -- import Puzzles.Day11
@@ -46,4 +46,6 @@ getPuzzleSolution (PuzzleSpec (Day 6) PartA) = MkSomeSolution day06aSolve
 getPuzzleSolution (PuzzleSpec (Day 6) PartB) = MkSomeSolution day06bSolve
 getPuzzleSolution (PuzzleSpec (Day 7) PartA) = MkSomeSolution day07aSolve
 getPuzzleSolution (PuzzleSpec (Day 7) PartB) = MkSomeSolution day07bSolve
+getPuzzleSolution (PuzzleSpec (Day 8) PartA) = MkSomeSolution day08aSolve
+getPuzzleSolution (PuzzleSpec (Day 8) PartB) = MkSomeSolution day08bSolve
 getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?
