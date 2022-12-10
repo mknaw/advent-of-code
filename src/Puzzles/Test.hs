@@ -47,7 +47,14 @@ showTestResult res
       L.foldl1'
         (<>)
         [ "✗ Expected: ",
+          multiLineBreak,
           _expected (_test res),
-          ", Actual: ",
+          multiLineBreak,
+          if isMultiLine then "" else ", ",
+          " Actual: ",
+          multiLineBreak,
           _actual res
         ]
+  where
+    isMultiLine = elem '\n' . _expected . _test $ res
+    multiLineBreak = if isMultiLine then "\n" else ""

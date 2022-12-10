@@ -83,7 +83,8 @@ main = do
     then do
       input <- readInput ps
       let solved = applySolution solution input
-      putStrLn $ show ps <> ": " <> solved
+      let spacer = if length (lines solved) > 1 then "\n" else ""
+      putStrLn $ show ps <> ": " <> spacer <> solved
       when doBench $ benchmarkSolution solution input
     else red $ putStrLn "Tests failed :("
   return ()

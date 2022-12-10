@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE GADTs, FlexibleInstances, UndecidableInstances #-}
 
 module Puzzles.Puzzles
   ( applySolution,
@@ -18,6 +18,15 @@ import Criterion
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import System.FilePath
+
+class ToString a where
+  toString :: a -> String
+
+instance {-# OVERLAPPING #-} ToString String where
+  toString s = s
+
+instance Show a => ToString a where
+  toString x = show x
 
 data PuzzlePart = PartA | PartB
 
@@ -57,10 +66,10 @@ data PuzzleSolve a b = PuzzleSolve
   }
 
 data SomeSolution where
-  MkSomeSolution :: Show b => PuzzleSolve a b -> SomeSolution
+  MkSomeSolution :: ToString b => PuzzleSolve a b -> SomeSolution
 
 applySolution :: SomeSolution -> T.Text -> String
-applySolution (MkSomeSolution (PuzzleSolve parse solve)) input = show . solve $ parse input
+applySolution (MkSomeSolution (PuzzleSolve parse solve)) input = toString . solve $ parse input
 
 benchmarkSolution :: SomeSolution -> T.Text -> IO ()
 benchmarkSolution (MkSomeSolution (PuzzleSolve parse solve)) input = do

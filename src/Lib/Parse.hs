@@ -10,9 +10,12 @@ where
 
 import Data.Text
 import Data.Void
+import Lib.Utils
 import Text.Megaparsec
 import Text.Megaparsec.Char
+import Text.Megaparsec.Char.Lexer hiding (space)
 import Puzzles.Test
+import Control.Monad (void)
 
 type Parser = Parsec Void Text
 
@@ -23,7 +26,7 @@ parseInput parser input =
     Right x -> x
 
 parseInt :: Parser Int
-parseInt = read <$> some digitChar
+parseInt = signed space decimal
 
 parseIntLines :: Parser [Int]
 parseIntLines = parseInt `sepEndBy` eol
@@ -31,9 +34,9 @@ parseIntLines = parseInt `sepEndBy` eol
 parseTestCase :: Parser TestCase
 parseTestCase = do
   input <- someTill anySingle (try $ string "\n>>> ")
-  output <- someTill anySingle newline
-  -- TODO why does it think I wanted a `String` `input` and not `Text`?
-  return $ TestCase (pack input) output
+  -- There probably are some smoother ways to do this...
+  output <- someTill anySingle (try $ void (try $ string "\n\n") <|> (char '\n' *> eof))
+  return $ TestCase (pack input) (trim output)
 
 parseTestCases :: Parser [TestCase]
-parseTestCases = parseTestCase `sepEndBy` char '\n'
+parseTestCases = many parseTestCase
