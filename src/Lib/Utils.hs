@@ -1,5 +1,6 @@
 module Lib.Utils
-  ( bindN,
+  ( applyToElem,
+    bindN,
     boolToInt,
     pairMap,
     trim,
@@ -25,3 +26,9 @@ pairMap f (x, y) = (f x, f y)
 trim :: String -> String
 trim = f . f
    where f = reverse . dropWhile isSpace
+
+-- | Apply a function to the element of a list
+applyToElem :: Int -> (a -> a) -> [a] -> [a]
+applyToElem n f xs = before ++ [f $ head after] ++ tail after
+  where
+    (before, after) = splitAt n xs
