@@ -73,7 +73,7 @@ library
         Puzzles.Day09
         Puzzles.Day10
         Puzzles.Day11
-        -- Puzzles.Day12
+        Puzzles.Day12
         -- Puzzles.Day13
         -- Puzzles.Day14
         -- Puzzles.Day15

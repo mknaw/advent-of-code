@@ -1,19 +1,24 @@
 module Lib.Matrix
-  ( coords,
+  ( Coord,
+    coords,
     cols,
     countTrue,
-    rows,
     mapRowWise,
     mapColWise,
+    neighbors,
+    rows,
   )
 where
 
+import Data.Ix (inRange)
 import qualified Data.List as L
 import qualified Data.Matrix as M
 import qualified Data.Vector as V
 import Lib.Utils
 
-coords :: M.Matrix a -> [(Int, Int)]
+type Coord = (Int, Int)
+
+coords :: M.Matrix a -> [Coord]
 coords m = [(i, j) | i <- [1 .. M.nrows m], j <- [1 .. M.ncols m]]
 
 rows :: M.Matrix a -> [V.Vector a]
@@ -30,3 +35,9 @@ mapColWise f = L.foldl1' (M.<|>) . map (M.colVector . f) . cols
 
 countTrue :: M.Matrix Bool -> Int
 countTrue = V.sum . V.map boolToInt . M.getMatrixAsVector
+
+neighbors :: M.Matrix a -> Coord -> [Coord]
+neighbors m (i, j) =
+  filter
+    (inRange ((1, 1), (M.nrows m, M.ncols m)))
+    [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]
