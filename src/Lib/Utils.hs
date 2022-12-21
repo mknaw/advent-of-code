@@ -9,6 +9,7 @@ module Lib.Utils
     pairMap,
     subsets,
     trim,
+    uncurry3,
     unpairify,
   )
 where
@@ -69,3 +70,7 @@ allDisjoint = go S.empty
   where
     go _ [] = True
     go s (x : xs) = S.disjoint s x && go (S.union s x) xs
+
+-- | Converts a curried function to a function on a triple.
+uncurry3 :: (a -> b -> c -> d) -> ((a, b, c) -> d)
+uncurry3 f ~(a,b,c) = f a b c
