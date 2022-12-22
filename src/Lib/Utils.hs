@@ -7,6 +7,7 @@ module Lib.Utils
     indicesWhere,
     pairify,
     pairMap,
+    roundUpDiv,
     subsets,
     trim,
     uncurry3,
@@ -74,3 +75,8 @@ allDisjoint = go S.empty
 -- | Converts a curried function to a function on a triple.
 uncurry3 :: (a -> b -> c -> d) -> ((a, b, c) -> d)
 uncurry3 f ~(a,b,c) = f a b c
+
+roundUpDiv :: Int -> Int -> Int
+roundUpDiv x y
+  | x `mod` y == 0 = x `div` y
+  | otherwise = x `div` y + 1
