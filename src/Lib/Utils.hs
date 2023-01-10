@@ -8,6 +8,7 @@ module Lib.Utils
     pairify,
     pairMap,
     roundUpDiv,
+    shift,
     subsets,
     trim,
     uncurry3,
@@ -16,8 +17,8 @@ module Lib.Utils
 where
 
 import Control.Monad
-import qualified Data.Set as S
 import Data.Char (isSpace)
+import qualified Data.Set as S
 
 boolToInt :: Bool -> Int
 boolToInt True = 1
@@ -47,7 +48,8 @@ pairMap f (x, y) = (f x, f y)
 -- | Trim whitespace from the beginning and end of a string
 trim :: String -> String
 trim = f . f
-   where f = reverse . dropWhile isSpace
+  where
+    f = reverse . dropWhile isSpace
 
 -- | Apply a function to the element of a list
 applyToElem :: Int -> (a -> a) -> [a] -> [a]
@@ -57,7 +59,7 @@ applyToElem n f xs = before ++ [f $ head after] ++ tail after
 
 -- | Get the indices of all elements that satisfy a predicate
 indicesWhere :: (a -> Bool) -> [a] -> [Int]
-indicesWhere f xs = map fst $ filter (f . snd) $ zip [0..] xs
+indicesWhere f xs = map fst $ filter (f . snd) $ zip [0 ..] xs
 
 -- | Generate all subsets of a certain size
 subsets :: Int -> [a] -> [[a]]
@@ -74,9 +76,13 @@ allDisjoint = go S.empty
 
 -- | Converts a curried function to a function on a triple.
 uncurry3 :: (a -> b -> c -> d) -> ((a, b, c) -> d)
-uncurry3 f ~(a,b,c) = f a b c
+uncurry3 f ~(a, b, c) = f a b c
 
 roundUpDiv :: Int -> Int -> Int
 roundUpDiv x y
   | x `mod` y == 0 = x `div` y
   | otherwise = x `div` y + 1
+
+shift :: [a] -> [a]
+shift [] = []
+shift (x : xs) = xs ++ [x]

@@ -5,12 +5,16 @@ module Lib.Counter
     decrementBy,
     increment,
     incrementBy,
+    mkCounter,
   )
 where
 
 import qualified Data.Map as M
 
 type Counter a = M.Map a Int
+
+mkCounter :: Counter k
+mkCounter = M.empty
 
 (!~) :: Ord a => Counter a -> a -> Int
 c !~ k = M.findWithDefault 0 k c

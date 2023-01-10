@@ -91,7 +91,7 @@ library
         Puzzles.Day20
         Puzzles.Day21
         Puzzles.Day22
-        -- Puzzles.Day23
+        Puzzles.Day23
         -- Puzzles.Day24
         -- Puzzles.Day25
         Puzzles.Map

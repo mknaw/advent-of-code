@@ -4,10 +4,14 @@ module Lib.Utils.Geometry
     directionToV2,
     neighbors4,
     neighbors8,
+    parseGridToMap,
+    parseGridToSet,
     Point,
   )
 where
 
+import qualified Data.Map as M
+import qualified Data.Set as S
 import Linear.V2
 
 type Point = V2 Int
@@ -50,3 +54,22 @@ neighbors8 (V2 x y) =
     V2 x (y + 1),
     V2 (x + 1) (y + 1)
   ]
+
+-- | Parse a grid of characters into a `Map` of V2 to arbitrary data.
+parseGridToMap :: (Char -> Maybe a) -> String -> M.Map Point a
+parseGridToMap f =
+  M.mapMaybe f
+    . M.fromList
+    . concat
+    . zipWith v2ize [0 ..]
+    . fmap (zip [0 ..])
+    . lines
+  where
+    v2ize :: Int -> [(Int, Char)] -> [(Point, Char)]
+    v2ize y = fmap (\(x, c) -> (V2 x y, c))
+
+-- | From a grid of characters, extract a `Set` of V2 where some condition is met.
+parseGridToSet :: (Char -> Bool) -> String -> S.Set Point
+parseGridToSet f = S.fromList . M.keys . parseGridToMap f'
+  where
+    f' c = if f c then Just () else Nothing
