@@ -27,7 +27,7 @@ import Puzzles.Day21
 import Puzzles.Day22
 import Puzzles.Day23
 import Puzzles.Day24
--- import Puzzles.Day25
+import Puzzles.Day25
 import Puzzles.Puzzles
 
 -- TODO figure out some programmatic way to do this? Maybe TH?
@@ -80,4 +80,6 @@ getPuzzleSolution (PuzzleSpec (Day 23) PartA) = MkSomeSolution day23aSolve
 getPuzzleSolution (PuzzleSpec (Day 23) PartB) = MkSomeSolution day23bSolve
 getPuzzleSolution (PuzzleSpec (Day 24) PartA) = MkSomeSolution day24aSolve
 getPuzzleSolution (PuzzleSpec (Day 24) PartB) = MkSomeSolution day24bSolve
+getPuzzleSolution (PuzzleSpec (Day 25) PartA) = MkSomeSolution day25aSolve
+getPuzzleSolution (PuzzleSpec (Day 25) PartB) = MkSomeSolution day25bSolve
 getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?

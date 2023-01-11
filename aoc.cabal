@@ -93,7 +93,7 @@ library
         Puzzles.Day22
         Puzzles.Day23
         Puzzles.Day24
-        -- Puzzles.Day25
+        Puzzles.Day25
         Puzzles.Map
         Puzzles.Puzzles
         Puzzles.Test
