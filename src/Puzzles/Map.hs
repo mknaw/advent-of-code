@@ -1,85 +1,84 @@
-module Puzzles.Map
-  ( getPuzzleSolution,
-  )
-where
+module Puzzles.Map (getPuzzleSolution) where
 
-import Puzzles.Day01
-import Puzzles.Day02
-import Puzzles.Day03
-import Puzzles.Day04
-import Puzzles.Day05
-import Puzzles.Day06
-import Puzzles.Day07
-import Puzzles.Day08
-import Puzzles.Day09
-import Puzzles.Day10
-import Puzzles.Day11
-import Puzzles.Day12
-import Puzzles.Day13
-import Puzzles.Day14
-import Puzzles.Day15
-import Puzzles.Day16
-import Puzzles.Day17
-import Puzzles.Day18
-import Puzzles.Day19
-import Puzzles.Day20
-import Puzzles.Day21
-import Puzzles.Day22
-import Puzzles.Day23
-import Puzzles.Day24
-import Puzzles.Day25
 import Puzzles.Puzzles
+import qualified Puzzles.Y22.Day01 as Y22
+import qualified Puzzles.Y22.Day02 as Y22
+import qualified Puzzles.Y22.Day03 as Y22
+import qualified Puzzles.Y22.Day04 as Y22
+import qualified Puzzles.Y22.Day05 as Y22
+import qualified Puzzles.Y22.Day06 as Y22
+import qualified Puzzles.Y22.Day07 as Y22
+import qualified Puzzles.Y22.Day08 as Y22
+import qualified Puzzles.Y22.Day09 as Y22
+import qualified Puzzles.Y22.Day10 as Y22
+import qualified Puzzles.Y22.Day11 as Y22
+import qualified Puzzles.Y22.Day12 as Y22
+import qualified Puzzles.Y22.Day13 as Y22
+import qualified Puzzles.Y22.Day14 as Y22
+import qualified Puzzles.Y22.Day15 as Y22
+import qualified Puzzles.Y22.Day16 as Y22
+import qualified Puzzles.Y22.Day17 as Y22
+import qualified Puzzles.Y22.Day18 as Y22
+import qualified Puzzles.Y22.Day19 as Y22
+import qualified Puzzles.Y22.Day20 as Y22
+import qualified Puzzles.Y22.Day21 as Y22
+import qualified Puzzles.Y22.Day22 as Y22
+import qualified Puzzles.Y22.Day23 as Y22
+import qualified Puzzles.Y22.Day24 as Y22
+import qualified Puzzles.Y22.Day25 as Y22
+import qualified Puzzles.Y23.Day01 as Y23
 
--- TODO figure out some programmatic way to do this? Maybe TH?
 getPuzzleSolution :: PuzzleSpec -> SomeSolution
-getPuzzleSolution (PuzzleSpec (Day 1) PartA) = MkSomeSolution day01aSolve
-getPuzzleSolution (PuzzleSpec (Day 1) PartB) = MkSomeSolution day01bSolve
-getPuzzleSolution (PuzzleSpec (Day 2) PartA) = MkSomeSolution day02aSolve
-getPuzzleSolution (PuzzleSpec (Day 2) PartB) = MkSomeSolution day02bSolve
-getPuzzleSolution (PuzzleSpec (Day 3) PartA) = MkSomeSolution day03aSolve
-getPuzzleSolution (PuzzleSpec (Day 3) PartB) = MkSomeSolution day03bSolve
-getPuzzleSolution (PuzzleSpec (Day 4) PartA) = MkSomeSolution day04aSolve
-getPuzzleSolution (PuzzleSpec (Day 4) PartB) = MkSomeSolution day04bSolve
-getPuzzleSolution (PuzzleSpec (Day 5) PartA) = MkSomeSolution day05aSolve
-getPuzzleSolution (PuzzleSpec (Day 5) PartB) = MkSomeSolution day05bSolve
-getPuzzleSolution (PuzzleSpec (Day 6) PartA) = MkSomeSolution day06aSolve
-getPuzzleSolution (PuzzleSpec (Day 6) PartB) = MkSomeSolution day06bSolve
-getPuzzleSolution (PuzzleSpec (Day 7) PartA) = MkSomeSolution day07aSolve
-getPuzzleSolution (PuzzleSpec (Day 7) PartB) = MkSomeSolution day07bSolve
-getPuzzleSolution (PuzzleSpec (Day 8) PartA) = MkSomeSolution day08aSolve
-getPuzzleSolution (PuzzleSpec (Day 8) PartB) = MkSomeSolution day08bSolve
-getPuzzleSolution (PuzzleSpec (Day 9) PartA) = MkSomeSolution day09aSolve
-getPuzzleSolution (PuzzleSpec (Day 9) PartB) = MkSomeSolution day09bSolve
-getPuzzleSolution (PuzzleSpec (Day 10) PartA) = MkSomeSolution day10aSolve
-getPuzzleSolution (PuzzleSpec (Day 10) PartB) = MkSomeSolution day10bSolve
-getPuzzleSolution (PuzzleSpec (Day 11) PartA) = MkSomeSolution day11aSolve
-getPuzzleSolution (PuzzleSpec (Day 11) PartB) = MkSomeSolution day11bSolve
-getPuzzleSolution (PuzzleSpec (Day 12) PartA) = MkSomeSolution day12aSolve
-getPuzzleSolution (PuzzleSpec (Day 12) PartB) = MkSomeSolution day12bSolve
-getPuzzleSolution (PuzzleSpec (Day 13) PartA) = MkSomeSolution day13aSolve
-getPuzzleSolution (PuzzleSpec (Day 13) PartB) = MkSomeSolution day13bSolve
-getPuzzleSolution (PuzzleSpec (Day 14) PartA) = MkSomeSolution day14aSolve
-getPuzzleSolution (PuzzleSpec (Day 14) PartB) = MkSomeSolution day14bSolve
-getPuzzleSolution (PuzzleSpec (Day 15) PartA) = MkSomeSolution day15aSolve
-getPuzzleSolution (PuzzleSpec (Day 15) PartB) = MkSomeSolution day15bSolve
-getPuzzleSolution (PuzzleSpec (Day 16) PartA) = MkSomeSolution day16aSolve
-getPuzzleSolution (PuzzleSpec (Day 16) PartB) = MkSomeSolution day16bSolve
-getPuzzleSolution (PuzzleSpec (Day 17) PartA) = MkSomeSolution day17aSolve
-getPuzzleSolution (PuzzleSpec (Day 17) PartB) = MkSomeSolution day17bSolve
-getPuzzleSolution (PuzzleSpec (Day 18) PartA) = MkSomeSolution day18aSolve
-getPuzzleSolution (PuzzleSpec (Day 18) PartB) = MkSomeSolution day18bSolve
-getPuzzleSolution (PuzzleSpec (Day 19) PartA) = MkSomeSolution day19aSolve
-getPuzzleSolution (PuzzleSpec (Day 19) PartB) = MkSomeSolution day19bSolve
-getPuzzleSolution (PuzzleSpec (Day 20) PartA) = MkSomeSolution day20aSolve
-getPuzzleSolution (PuzzleSpec (Day 20) PartB) = MkSomeSolution day20bSolve
-getPuzzleSolution (PuzzleSpec (Day 21) PartA) = MkSomeSolution day21aSolve
-getPuzzleSolution (PuzzleSpec (Day 21) PartB) = MkSomeSolution day21bSolve
-getPuzzleSolution (PuzzleSpec (Day 22) PartA) = MkSomeSolution day22aSolve
-getPuzzleSolution (PuzzleSpec (Day 22) PartB) = MkSomeSolution day22bSolve
-getPuzzleSolution (PuzzleSpec (Day 23) PartA) = MkSomeSolution day23aSolve
-getPuzzleSolution (PuzzleSpec (Day 23) PartB) = MkSomeSolution day23bSolve
-getPuzzleSolution (PuzzleSpec (Day 24) PartA) = MkSomeSolution day24aSolve
-getPuzzleSolution (PuzzleSpec (Day 24) PartB) = MkSomeSolution day24bSolve
-getPuzzleSolution (PuzzleSpec (Day 25) PartA) = MkSomeSolution day25aSolve
-getPuzzleSolution (PuzzleSpec (Day 25) PartB) = MkSomeSolution day25bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 1) PartA) = MkSomeSolution Y22.day01aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 1) PartB) = MkSomeSolution Y22.day01bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 2) PartA) = MkSomeSolution Y22.day02aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 2) PartB) = MkSomeSolution Y22.day02bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 3) PartA) = MkSomeSolution Y22.day03aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 3) PartB) = MkSomeSolution Y22.day03bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 4) PartA) = MkSomeSolution Y22.day04aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 4) PartB) = MkSomeSolution Y22.day04bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 5) PartA) = MkSomeSolution Y22.day05aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 5) PartB) = MkSomeSolution Y22.day05bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 6) PartA) = MkSomeSolution Y22.day06aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 6) PartB) = MkSomeSolution Y22.day06bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 7) PartA) = MkSomeSolution Y22.day07aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 7) PartB) = MkSomeSolution Y22.day07bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 8) PartA) = MkSomeSolution Y22.day08aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 8) PartB) = MkSomeSolution Y22.day08bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 9) PartA) = MkSomeSolution Y22.day09aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 9) PartB) = MkSomeSolution Y22.day09bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 10) PartA) = MkSomeSolution Y22.day10aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 10) PartB) = MkSomeSolution Y22.day10bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 11) PartA) = MkSomeSolution Y22.day11aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 11) PartB) = MkSomeSolution Y22.day11bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 12) PartA) = MkSomeSolution Y22.day12aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 12) PartB) = MkSomeSolution Y22.day12bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 13) PartA) = MkSomeSolution Y22.day13aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 13) PartB) = MkSomeSolution Y22.day13bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 14) PartA) = MkSomeSolution Y22.day14aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 14) PartB) = MkSomeSolution Y22.day14bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 15) PartA) = MkSomeSolution Y22.day15aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 15) PartB) = MkSomeSolution Y22.day15bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 16) PartA) = MkSomeSolution Y22.day16aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 16) PartB) = MkSomeSolution Y22.day16bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 17) PartA) = MkSomeSolution Y22.day17aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 17) PartB) = MkSomeSolution Y22.day17bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 18) PartA) = MkSomeSolution Y22.day18aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 18) PartB) = MkSomeSolution Y22.day18bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 19) PartA) = MkSomeSolution Y22.day19aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 19) PartB) = MkSomeSolution Y22.day19bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 20) PartA) = MkSomeSolution Y22.day20aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 20) PartB) = MkSomeSolution Y22.day20bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 21) PartA) = MkSomeSolution Y22.day21aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 21) PartB) = MkSomeSolution Y22.day21bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 22) PartA) = MkSomeSolution Y22.day22aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 22) PartB) = MkSomeSolution Y22.day22bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 23) PartA) = MkSomeSolution Y22.day23aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 23) PartB) = MkSomeSolution Y22.day23bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 24) PartA) = MkSomeSolution Y22.day24aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 24) PartB) = MkSomeSolution Y22.day24bSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 25) PartA) = MkSomeSolution Y22.day25aSolve
+getPuzzleSolution (PuzzleSpec 22 (Day 25) PartB) = MkSomeSolution Y22.day25bSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 01) PartA) = MkSomeSolution Y23.day01aSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 01) PartB) = MkSomeSolution Y23.day01bSolve
 getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?

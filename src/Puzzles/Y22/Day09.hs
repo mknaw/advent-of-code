@@ -1,4 +1,4 @@
-module Puzzles.Day09
+module Puzzles.Y22.Day09
   ( day09aSolve,
     day09bSolve,
   )

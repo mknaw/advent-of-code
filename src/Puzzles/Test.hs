@@ -26,7 +26,11 @@ data TestResult = TestResult
   }
 
 testPath :: PuzzleSpec -> FilePath
-testPath (PuzzleSpec day part) = "data/test" </> show day ++ show part <.> "txt"
+testPath (PuzzleSpec year day part) =
+  "data"
+    </> ('Y' : show year)
+    </> "test"
+    </> show day ++ show part <.> "txt"
 
 testInputExists :: PuzzleSpec -> IO Bool
 testInputExists spec = doesFileExist (testPath spec)

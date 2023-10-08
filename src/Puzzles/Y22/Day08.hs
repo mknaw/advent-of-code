@@ -1,4 +1,4 @@
-module Puzzles.Day08
+module Puzzles.Y22.Day08
   ( day08aSolve,
     day08bSolve,
   )
@@ -32,7 +32,7 @@ parse' :: T.Text -> M.Matrix Int
 parse' = M.fromLists . map (map digitToInt) . lines . T.unpack
 
 day08a :: M.Matrix Int -> Int
-day08a m =
+day08a !m =
   countTrue $
     L.foldl1'
       (M.elementwise (||))
@@ -46,7 +46,7 @@ day08a m =
     visible v = V.cons True $ V.zipWith (>) (V.tail v) (V.scanl1' max v)
 
 day08b :: M.Matrix Int -> Int
-day08b m = maximum $ map (visibilityScore m) coords'
+day08b !m = maximum $ map (visibilityScore m) coords'
   where
     f (i, j) = and [i > 1, i < M.nrows m, j > 1, j < M.ncols m]
     coords' = filter f $ coords m

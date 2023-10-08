@@ -2,7 +2,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module Puzzles.Day07
+module Puzzles.Y22.Day07
   ( day07aSolve,
     day07bSolve,
   )

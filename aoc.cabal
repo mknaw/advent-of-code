@@ -30,12 +30,14 @@ common common-options
                          -Wincomplete-record-updates
                          -Wno-unused-do-bind
 
+
     build-depends:
         base ^>=4.14.3.0
         , ansi-terminal ==0.11.*
         , Cabal ==3.8.*
         , containers ==0.6.*
         , criterion ==1.6.*
+        , criterion-measurement ==0.2.*
         , directory ==1.3.*
         , filepath ==1.4.*
         , fin ==0.2.*
@@ -48,6 +50,7 @@ common common-options
         , mtl ==2.2.*
         , recursion-schemes ^>=5.2.2.3
         , split ==0.2.*
+        , statistics
         , template-haskell
         , text ==1.2.*
         , vector ==0.13.*
@@ -67,36 +70,38 @@ library
         Lib.Counter
         Lib.Matrix
         Lib.Parse
+        Lib.Summary
         Lib.Utils
         Lib.Utils.Geometry
-        Puzzles.Day01
-        Puzzles.Day02
-        Puzzles.Day03
-        Puzzles.Day04
-        Puzzles.Day05
-        Puzzles.Day06
-        Puzzles.Day07
-        Puzzles.Day08
-        Puzzles.Day09
-        Puzzles.Day10
-        Puzzles.Day11
-        Puzzles.Day12
-        Puzzles.Day13
-        Puzzles.Day14
-        Puzzles.Day15
-        Puzzles.Day16
-        Puzzles.Day17
-        Puzzles.Day18
-        Puzzles.Day19
-        Puzzles.Day20
-        Puzzles.Day21
-        Puzzles.Day22
-        Puzzles.Day23
-        Puzzles.Day24
-        Puzzles.Day25
         Puzzles.Map
         Puzzles.Puzzles
         Puzzles.Test
+        Puzzles.Y22.Day01
+        Puzzles.Y22.Day02
+        Puzzles.Y22.Day03
+        Puzzles.Y22.Day04
+        Puzzles.Y22.Day05
+        Puzzles.Y22.Day06
+        Puzzles.Y22.Day07
+        Puzzles.Y22.Day08
+        Puzzles.Y22.Day09
+        Puzzles.Y22.Day10
+        Puzzles.Y22.Day11
+        Puzzles.Y22.Day12
+        Puzzles.Y22.Day13
+        Puzzles.Y22.Day14
+        Puzzles.Y22.Day15
+        Puzzles.Y22.Day16
+        Puzzles.Y22.Day17
+        Puzzles.Y22.Day18
+        Puzzles.Y22.Day19
+        Puzzles.Y22.Day20
+        Puzzles.Y22.Day21
+        Puzzles.Y22.Day22
+        Puzzles.Y22.Day23
+        Puzzles.Y22.Day24
+        Puzzles.Y22.Day25
+        Puzzles.Y23.Day01
 
 executable aoc-exe
     import:           common-options
@@ -111,4 +116,15 @@ executable aoc-exe
         aoc
         , optparse-applicative
     hs-source-dirs:   app
-    default-language: Haskell2010
+
+test-suite aoc-test
+  default-language: Haskell2010
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  other-modules:
+      Paths_aoc
+  build-depends:
+      base ^>=4.14.3.0
+      , HUnit

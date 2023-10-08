@@ -1,4 +1,6 @@
-{-# LANGUAGE GADTs, FlexibleInstances, UndecidableInstances #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE UndecidableInstances #-}
 
 module Puzzles.Puzzles
   ( applySolution,
@@ -15,8 +17,10 @@ module Puzzles.Puzzles
 where
 
 import Criterion
+import Criterion.Types (anMean, reportAnalysis)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
+import Statistics.Types (estPoint)
 import System.FilePath
 
 class ToString a where
@@ -28,14 +32,14 @@ instance {-# OVERLAPPING #-} ToString String where
 instance Show a => ToString a where
   toString x = show x
 
-data PuzzlePart = PartA | PartB
+data PuzzlePart = PartA | PartB deriving (Eq)
 
 instance Show PuzzlePart where
   show PartA = "a"
   show PartB = "b"
 
 -- TODO should be a NAT instead of an Int?
-newtype Day = Day {_d :: Int}
+newtype Day = Day {_d :: Int} deriving (Eq, Ord)
 
 instance Show Day where
   show (Day day)
@@ -43,18 +47,19 @@ instance Show Day where
     | otherwise = '0' : show day
 
 data PuzzleSpec = PuzzleSpec
-  { unDay :: Day,
+  { unYear :: Int,
+    unDay :: Day,
     unPart :: PuzzlePart
   }
 
 instance Show PuzzleSpec where
-  show (PuzzleSpec day part) = "Day " <> show day <> ", Part " <> show part
+  show (PuzzleSpec _ day part) = "Day " <> show day <> ", Part " <> show part
 
 mkPuzzleSpec :: Int -> PuzzlePart -> PuzzleSpec
-mkPuzzleSpec day part = PuzzleSpec {unDay = Day day, unPart = part}
+mkPuzzleSpec day part = PuzzleSpec {unYear = 22, unDay = Day day, unPart = part}
 
 inputPath :: PuzzleSpec -> FilePath
-inputPath (PuzzleSpec day _) = "data" </> show day <.> "txt"
+inputPath (PuzzleSpec year day _) = "data" </> ('Y' : show year) </> show day <.> "txt"
 
 readInput :: PuzzleSpec -> IO T.Text
 readInput ps = do
@@ -71,7 +76,7 @@ data SomeSolution where
 applySolution :: SomeSolution -> T.Text -> String
 applySolution (MkSomeSolution (PuzzleSolve parse solve)) input = toString . solve $ parse input
 
-benchmarkSolution :: SomeSolution -> T.Text -> IO ()
+benchmarkSolution :: SomeSolution -> T.Text -> IO Double
 benchmarkSolution (MkSomeSolution (PuzzleSolve parse solve)) input = do
   let parsed = parse input
-  benchmark $ whnf solve parsed
+  estPoint . anMean . reportAnalysis <$> benchmark' (whnf solve parsed)
