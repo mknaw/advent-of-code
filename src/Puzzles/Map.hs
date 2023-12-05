@@ -27,6 +27,7 @@ import qualified Puzzles.Y22.Day23 as Y22
 import qualified Puzzles.Y22.Day24 as Y22
 import qualified Puzzles.Y22.Day25 as Y22
 import qualified Puzzles.Y23.Day01 as Y23
+import qualified Puzzles.Y23.Day02 as Y23
 
 getPuzzleSolution :: PuzzleSpec -> SomeSolution
 getPuzzleSolution (PuzzleSpec 22 (Day 1) PartA) = MkSomeSolution Y22.day01aSolve
@@ -79,6 +80,8 @@ getPuzzleSolution (PuzzleSpec 22 (Day 24) PartA) = MkSomeSolution Y22.day24aSolv
 getPuzzleSolution (PuzzleSpec 22 (Day 24) PartB) = MkSomeSolution Y22.day24bSolve
 getPuzzleSolution (PuzzleSpec 22 (Day 25) PartA) = MkSomeSolution Y22.day25aSolve
 getPuzzleSolution (PuzzleSpec 22 (Day 25) PartB) = MkSomeSolution Y22.day25bSolve
-getPuzzleSolution (PuzzleSpec 23 (Day 01) PartA) = MkSomeSolution Y23.day01aSolve
-getPuzzleSolution (PuzzleSpec 23 (Day 01) PartB) = MkSomeSolution Y23.day01bSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 1) PartA) = MkSomeSolution Y23.day01aSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 1) PartB) = MkSomeSolution Y23.day01bSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 2) PartA) = MkSomeSolution Y23.day02aSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 2) PartB) = MkSomeSolution Y23.day02bSolve
 getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?
