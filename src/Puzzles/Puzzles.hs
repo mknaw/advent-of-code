@@ -53,7 +53,15 @@ data PuzzleSpec = PuzzleSpec
   }
 
 instance Show PuzzleSpec where
-  show (PuzzleSpec _ day part) = "Day " <> show day <> ", Part " <> show part
+  show (PuzzleSpec year day part) =
+    concat
+      [ "Y",
+        show year,
+        ", Day ",
+        show day,
+        ", Part ",
+        show part
+      ]
 
 mkPuzzleSpec :: Int -> PuzzlePart -> PuzzleSpec
 mkPuzzleSpec day part = PuzzleSpec {unYear = 22, unDay = Day day, unPart = part}

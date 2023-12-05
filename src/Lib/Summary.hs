@@ -58,12 +58,21 @@ parseTableRow = do
 
 writeBenchmark :: PuzzleSpec -> Double -> IO ()
 writeBenchmark spec meantime = do
-  summaries <- M.adjust f (unYear spec, unDay spec) <$> readSummaryFile "README.md"
+  let newValue =
+        PuzzleSummary
+          { _year = unYear spec,
+            _day = unDay spec,
+            _aComplete = False,
+            _aBenchmark = "",
+            _bComplete = False,
+            _bBenchmark = ""
+          }
+  summaries <- M.insertWith f (unYear spec, unDay spec) newValue <$> readSummaryFile "README.md"
   let table = T.pack . unlines . fmap (serializeSummary . snd) $ M.toAscList summaries
   writeReadme table
   where
-    f :: PuzzleSummary -> PuzzleSummary
-    f s
+    f :: PuzzleSummary -> PuzzleSummary -> PuzzleSummary
+    f _ s
       | unPart spec == PartA = s {_aComplete = True, _aBenchmark = secs meantime}
       | otherwise = s {_bComplete = True, _bBenchmark = secs meantime}
 
