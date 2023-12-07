@@ -32,7 +32,7 @@ day03bSolve =
 parse' :: T.Text -> [Rucksack]
 parse' = map (parseRucksack . T.unpack) . T.lines
   where
-    parseRucksack xs = pairMap S.fromList $ splitAt (length xs `div` 2) xs
+    parseRucksack xs = both S.fromList $ splitAt (length xs `div` 2) xs
 
 day03a :: [Rucksack] -> Int
 day03a = sum . map (prioritize . setHead . uncurry S.intersection)

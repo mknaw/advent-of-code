@@ -6,7 +6,6 @@ module Lib.Utils
     both,
     indicesWhere,
     pairify,
-    pairMap,
     roundUpDiv,
     shift,
     subsets,
@@ -40,10 +39,6 @@ unpairify (x, y) = [x, y]
 -- | Apply a function to both elements in a pair
 both :: (a -> b) -> (a, a) -> (b, b)
 both f (x, y) = (f x, f y)
-
--- | Like <$> for a 2-tuple
-pairMap :: (a -> b) -> (a, a) -> (b, b)
-pairMap f (x, y) = (f x, f y)
 
 -- | Trim whitespace from the beginning and end of a string
 trim :: String -> String

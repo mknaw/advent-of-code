@@ -56,6 +56,7 @@ parseTableRow = do
   _bBenchmark <- fmap trim . manyTill anySingle $ string " |"
   return PuzzleSummary {..}
 
+-- TODO there's some bug in here where it doesn't write the bench time when it adds new row
 writeBenchmark :: PuzzleSpec -> Double -> IO ()
 writeBenchmark spec meantime = do
   let newValue =

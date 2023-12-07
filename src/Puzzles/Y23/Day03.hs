@@ -6,8 +6,8 @@ where
 
 import Data.Bifunctor (Bifunctor (first))
 import Data.Char
-import Data.IntervalMap hiding (filter)
-import qualified Data.IntervalMap.Generic.Strict as IM
+import Data.Interval
+import qualified Data.IntervalMap.Strict as IM
 import qualified Data.List as L
 import qualified Data.Text as T
 import qualified Data.Vector as V
@@ -15,7 +15,7 @@ import Lib.Utils.Geometry (Point)
 import Linear
 import Puzzles.Puzzles
 
-type IMap = IM.IntervalMap (Interval Int) Int
+type IMap = IM.IntervalMap Int Int
 
 type Symbols = [(Point, Char)]
 
@@ -51,7 +51,7 @@ parse' input = (concat (zipWith makeMap [0 ..] symbols), V.fromList nums)
             let (d, rest) = span isDigit (c : cs)
                 n = read d
                 i' = i + length d
-                xs' = IM.insert (ClosedInterval i (i' - 1)) n xs
+                xs' = IM.insert (Finite i <=..<= Finite (i' - 1)) n xs
              in go i' (syms, xs') rest
           | otherwise = go (i + 1) ((i, c) : syms, xs) cs
 
@@ -61,6 +61,9 @@ parse' input = (concat (zipWith makeMap [0 ..] symbols), V.fromList nums)
 -- TODO this stuff is still pretty gross ...
 
 type HitHandler = Interval Int -> IMap -> IMap
+
+containing :: IMap -> Int -> IMap
+containing m i = IM.fromList . filter (member i . fst) . IM.assocs $ m
 
 collectAdjacent :: HitHandler -> V.Vector IMap -> [Point] -> [[Int]]
 collectAdjacent h numbers = fst . L.foldl' go ([], numbers)
@@ -73,7 +76,7 @@ collectAdjacent h numbers = fst . L.foldl' go ([], numbers)
         (hits, rows') = unzip $ flip search [y - 1, y, y + 1] <$> rows
 
     search :: IMap -> [Int] -> ([Int], IMap)
-    search m = L.foldl' f ([], m) . IM.toList . L.foldl1' IM.union . fmap (IM.containing m)
+    search m = L.foldl' f ([], m) . IM.toList . L.foldl1' IM.union . fmap (containing m)
       where
         f :: ([Int], IMap) -> (Interval Int, Int) -> ([Int], IMap)
         f (acc, m') (i', x) = (x : acc, h i' m')
