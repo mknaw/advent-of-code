@@ -110,6 +110,7 @@ library
         Puzzles.Y23.Day05
         Puzzles.Y23.Day06
         Puzzles.Y23.Day07
+        Puzzles.Y23.Day08
 
 executable aoc-exe
     import:           common-options
