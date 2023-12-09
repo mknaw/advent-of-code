@@ -1,6 +1,6 @@
 https://adventofcode.com/
 
-invoke like `cabal run aoc-exe -- --day \d+ --part a|b`
+invoke like `cabal run aoc-exe -- --year 23 --days \d+ --parts a|b`
 
 arbitrary testing data can be added under `data/Y\d+/test/\d+[ab].txt`
 
@@ -37,3 +37,4 @@ arbitrary testing data can be added under `data/Y\d+/test/\d+[ab].txt`
 | '23 | 04 | ✔ | 247.6 μs | ✔ | 315.1 μs |
 | '23 | 05 | ✔ | 1.337 ms | ✔ | 7.481 ms |
 | '23 | 06 | ✔ | 631.8 ns | ✔ | 101.1 ms |
+| '23 | 07 | ✔ | 1.704 ms | ✔ | 1.522 ms |

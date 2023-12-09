@@ -32,6 +32,7 @@ import qualified Puzzles.Y23.Day03 as Y23
 import qualified Puzzles.Y23.Day04 as Y23
 import qualified Puzzles.Y23.Day05 as Y23
 import qualified Puzzles.Y23.Day06 as Y23
+import qualified Puzzles.Y23.Day07 as Y23
 
 getPuzzleSolution :: PuzzleSpec -> SomeSolution
 getPuzzleSolution (PuzzleSpec 22 (Day 1) PartA) = MkSomeSolution Y22.day01aSolve
@@ -96,4 +97,6 @@ getPuzzleSolution (PuzzleSpec 23 (Day 5) PartA) = MkSomeSolution Y23.day05aSolve
 getPuzzleSolution (PuzzleSpec 23 (Day 5) PartB) = MkSomeSolution Y23.day05bSolve
 getPuzzleSolution (PuzzleSpec 23 (Day 6) PartA) = MkSomeSolution Y23.day06aSolve
 getPuzzleSolution (PuzzleSpec 23 (Day 6) PartB) = MkSomeSolution Y23.day06bSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 7) PartA) = MkSomeSolution Y23.day07aSolve
+getPuzzleSolution (PuzzleSpec 23 (Day 7) PartB) = MkSomeSolution Y23.day07bSolve
 getPuzzleSolution _ = error "puzzle for spec unavailable!"  -- TODO `Show` spec?
