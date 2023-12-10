@@ -9,6 +9,7 @@ module Lib.Utils
     roundUpDiv,
     shift,
     subsets,
+    toSnd,
     trim,
     uncurry3,
     unpairify,
@@ -81,3 +82,7 @@ roundUpDiv x y
 shift :: [a] -> [a]
 shift [] = []
 shift (x : xs) = xs ++ [x]
+
+toSnd :: (a -> b) -> a -> (a, b)
+toSnd f a = (a, f a)
+{-# INLINE toSnd #-}
