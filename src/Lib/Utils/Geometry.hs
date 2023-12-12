@@ -1,11 +1,11 @@
 {-# LANGUAGE TupleSections #-}
-
 module Lib.Utils.Geometry
   ( (==>),
     Direction (..),
     directionToV2,
     drawGridMap,
     drawGridSet,
+    manhattanDistance,
     neighbors4,
     neighbors8,
     oppositeDir,
@@ -24,6 +24,9 @@ import Linear.V2
 import Data.Maybe (fromMaybe)
 
 type Point = V2 Int
+
+manhattanDistance :: Point -> Point -> Int
+manhattanDistance (V2 x1 y1) (V2 x2 y2) = abs (x1 - x2) + abs (y1 - y2)
 
 data Direction = N | E | S | W deriving (Eq, Show)
 
