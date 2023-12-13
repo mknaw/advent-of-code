@@ -47,6 +47,7 @@ common common-options
         , lens ==5.2
         , matrix ==0.3.*
         , megaparsec ==9.2.*
+        , MemoTrie ==0.6.*
         , monad-loops ==0.4.*
         , mtl ==2.2.*
         , range ==0.3.*
@@ -115,6 +116,7 @@ library
         Puzzles.Y23.Day09
         Puzzles.Y23.Day10
         Puzzles.Y23.Day11
+        Puzzles.Y23.Day12
 
 executable aoc-exe
     import:           common-options
