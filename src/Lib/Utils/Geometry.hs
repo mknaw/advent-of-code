@@ -1,10 +1,12 @@
 {-# LANGUAGE TupleSections #-}
+
 module Lib.Utils.Geometry
   ( (==>),
     Direction (..),
     directionToV2,
     drawGridMap,
     drawGridSet,
+    gridSizeOf,
     manhattanDistance,
     neighbors4,
     neighbors8,
@@ -19,9 +21,10 @@ module Lib.Utils.Geometry
 where
 
 import qualified Data.Map as M
-import qualified Data.Set as S
-import Linear.V2
 import Data.Maybe (fromMaybe)
+import qualified Data.Set as S
+import Data.Tuple.Extra ((&&&))
+import Linear.V2
 
 type Point = V2 Int
 
@@ -92,6 +95,9 @@ neighbors8 (V2 x y) =
     V2 (x + 1) (y + 1)
   ]
 
+gridSizeOf :: String -> Point
+gridSizeOf = uncurry V2 . (length . head . lines &&& length . lines)
+
 -- | Parse a grid of characters into a `Map` of V2 to arbitrary data.
 -- TODO should add dims to the return, perhaps
 parseGridToMap :: (Char -> Maybe a) -> String -> M.Map Point a
@@ -124,4 +130,4 @@ parseGridToSet f = S.fromList . M.keys . parseGridToMap f'
 drawGridSet :: Point -> S.Set Point -> String
 drawGridSet dims pts = drawGridMap dims m
   where
-    m = M.fromList . fmap (, '#') . S.toList $ pts
+    m = M.fromList . fmap (,'#') . S.toList $ pts

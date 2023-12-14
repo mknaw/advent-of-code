@@ -9,6 +9,7 @@ module Lib.Utils
     roundUpDiv,
     shift,
     subsets,
+    symmetricDifference,
     toSnd,
     trim,
     uncurry3,
@@ -18,6 +19,7 @@ where
 
 import Control.Monad
 import Data.Char (isSpace)
+import Data.Set ((\\))
 import qualified Data.Set as S
 
 boolToInt :: Bool -> Int
@@ -86,3 +88,6 @@ shift (x : xs) = xs ++ [x]
 toSnd :: (a -> b) -> a -> (a, b)
 toSnd f a = (a, f a)
 {-# INLINE toSnd #-}
+
+symmetricDifference :: Ord a => S.Set a -> S.Set a -> S.Set a
+symmetricDifference x y = (x \\ y) <> (y \\ x)

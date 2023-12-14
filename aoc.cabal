@@ -40,6 +40,7 @@ common common-options
         , criterion-measurement ==0.2.*
         , directory ==1.3.*
         , data-interval ==2.1.*
+        , extra ==1.7.*
         , filepath ==1.4.*
         , fin ==0.2.*
         , linear ==1.22
@@ -117,6 +118,7 @@ library
         Puzzles.Y23.Day10
         Puzzles.Y23.Day11
         Puzzles.Y23.Day12
+        Puzzles.Y23.Day13
 
 executable aoc-exe
     import:           common-options
