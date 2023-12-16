@@ -5,6 +5,7 @@ module Lib.Utils
     boolToInt,
     both,
     indicesWhere,
+    invertMap,
     pairify,
     roundUpDiv,
     shift,
@@ -20,6 +21,7 @@ where
 import Control.Monad
 import Data.Char (isSpace)
 import Data.Set ((\\))
+import qualified Data.Map as M
 import qualified Data.Set as S
 
 boolToInt :: Bool -> Int
@@ -91,3 +93,6 @@ toSnd f a = (a, f a)
 
 symmetricDifference :: Ord a => S.Set a -> S.Set a -> S.Set a
 symmetricDifference x y = (x \\ y) <> (y \\ x)
+
+invertMap :: (Ord k, Ord v) => M.Map k v -> M.Map v k
+invertMap = M.fromList . map (\(k, v) -> (v, k)) . M.toList

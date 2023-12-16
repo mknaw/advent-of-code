@@ -7,6 +7,7 @@ module Lib.Utils.Geometry
     drawGridMap,
     drawGridSet,
     gridSizeOf,
+    inBounds,
     manhattanDistance,
     neighbors4,
     neighbors8,
@@ -131,3 +132,6 @@ drawGridSet :: Point -> S.Set Point -> String
 drawGridSet dims pts = drawGridMap dims m
   where
     m = M.fromList . fmap (,'#') . S.toList $ pts
+
+inBounds :: Point -> Point -> Bool
+inBounds (V2 maxX maxY) (V2 x y) = x >= 0 && x < maxX && y >= 0 && y < maxY

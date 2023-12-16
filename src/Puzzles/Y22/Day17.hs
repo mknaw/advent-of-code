@@ -11,7 +11,7 @@ import qualified Data.Maybe as M
 import qualified Data.Set as S
 import qualified Data.Text as T
 import Lib.Utils
-import Lib.Utils.Geometry
+import Lib.Utils.Geometry hiding (inBounds)
 import Linear.V2
 import Puzzles.Puzzles
 
