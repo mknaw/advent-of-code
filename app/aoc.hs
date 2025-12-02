@@ -25,6 +25,7 @@ readYear :: ReadM Int
 readYear = eitherReader $ \case
   "22" -> Right 22
   "23" -> Right 23
+  "25" -> Right 25
   _ -> Left "Invalid year"
 
 -- TODO probably want to actually return Nothing when they're bad

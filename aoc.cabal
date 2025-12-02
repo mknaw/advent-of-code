@@ -106,6 +106,7 @@ library
         Puzzles.Y22.Day23
         Puzzles.Y22.Day24
         Puzzles.Y22.Day25
+        --
         Puzzles.Y23.Day01
         Puzzles.Y23.Day02
         Puzzles.Y23.Day03
@@ -121,6 +122,8 @@ library
         Puzzles.Y23.Day13
         Puzzles.Y23.Day14
         Puzzles.Y23.Day15
+        --
+        Puzzles.Y25.Day01
 
 executable aoc-exe
     import:           common-options

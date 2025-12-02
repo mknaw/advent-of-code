@@ -25,7 +25,6 @@
         };
 
         devShells.default = pkgs.mkShell {
-          name = "my-haskell-package custom development shell";
           inputsFrom = [
             config.haskellProjects.default.outputs.devShell
           ];
