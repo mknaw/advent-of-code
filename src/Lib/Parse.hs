@@ -8,7 +8,7 @@ module Lib.Parse
   )
 where
 
-import Data.Text
+import Data.Text hiding (show)
 import Data.Void
 import Lib.Utils
 import Text.Megaparsec

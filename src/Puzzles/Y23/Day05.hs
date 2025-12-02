@@ -4,7 +4,7 @@ module Puzzles.Y23.Day05
   )
 where
 
-import Data.Functor
+import Data.Functor hiding (unzip)
 import qualified Data.IntegerInterval as II
 import Data.Interval as I
 import qualified Data.IntervalSet as IS
