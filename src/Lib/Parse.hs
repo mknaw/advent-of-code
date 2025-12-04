@@ -1,5 +1,7 @@
 module Lib.Parse
   ( Parser,
+    parseDigit,
+    parseDigitLines,
     parseInput,
     parseInt,
     parseIntLines,
@@ -30,6 +32,12 @@ parseInt = signed space decimal
 
 parseIntLines :: Parser [Int]
 parseIntLines = parseInt `sepEndBy` eol
+
+parseDigit :: Parser Int
+parseDigit = read . (:[]) <$> digitChar
+
+parseDigitLines :: Parser [[Int]]
+parseDigitLines = (some parseDigit) `sepEndBy` eol
 
 parseTestCase :: Parser TestCase
 parseTestCase = do
