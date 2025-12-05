@@ -1,0 +1,10 @@
+{
+  "haskell": {
+    "plugin": {
+      "hlint": {
+        "globalOn": false
+      }
+    }
+  }
+}
+

@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:aoc"
+    - path: "./app"
+      component: "exe:aoc-exe"
+    - path: "./test"
+      component: "test:aoc-test"
+
+formattingProvider: fourmolu

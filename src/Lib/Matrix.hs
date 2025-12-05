@@ -6,6 +6,7 @@ module Lib.Matrix
     mapRowWise,
     mapColWise,
     neighbors,
+    neighbors8,
     rows,
   )
 where
@@ -14,7 +15,8 @@ import Data.Ix (inRange)
 import qualified Data.List as L
 import qualified Data.Matrix as M
 import qualified Data.Vector as V
-import Lib.Utils
+-- TODO do we _really_ need a `countTrue` in this module?
+import Lib.Utils hiding (countTrue)
 
 type Coord = (Int, Int)
 
@@ -41,3 +43,11 @@ neighbors m (i, j) =
   filter
     (inRange ((1, 1), (M.nrows m, M.ncols m)))
     [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]
+
+neighbors8 :: M.Matrix a -> Coord -> [Coord]
+neighbors8 m (i, j) =
+  neighbors m (i, j)
+    ++ ( filter
+           (inRange ((1, 1), (M.nrows m, M.ncols m)))
+           [(i - 1, j - 1), (i - 1, j + 1), (i + 1, j - 1), (i + 1, j + 1)]
+       )

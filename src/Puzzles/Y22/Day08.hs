@@ -11,7 +11,7 @@ import qualified Data.Matrix as M
 import qualified Data.Text as T
 import qualified Data.Vector as V
 import Lib.Matrix
-import Lib.Utils
+import Lib.Utils hiding (countTrue)
 import Puzzles.Puzzles
 
 day08aSolve :: PuzzleSolve (M.Matrix Int) Int

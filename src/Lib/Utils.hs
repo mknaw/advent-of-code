@@ -4,8 +4,10 @@ module Lib.Utils
     bindN,
     boolToInt,
     both,
+    countTrue,
     indicesWhere,
     invertMap,
+    fixedPoint,
     pairify,
     roundUpDiv,
     shift,
@@ -20,8 +22,8 @@ where
 
 import Control.Monad
 import Data.Char (isSpace)
-import Data.Set ((\\))
 import qualified Data.Map as M
+import Data.Set ((\\))
 import qualified Data.Set as S
 
 boolToInt :: Bool -> Int
@@ -68,7 +70,7 @@ subsets _ [] = []
 subsets n (x : xs) = map (x :) (subsets (n - 1) xs) ++ subsets n xs
 
 -- | Check if all sets in a list are disjoint
-allDisjoint :: Ord a => [S.Set a] -> Bool
+allDisjoint :: (Ord a) => [S.Set a] -> Bool
 allDisjoint = go S.empty
   where
     go _ [] = True
@@ -91,8 +93,16 @@ toSnd :: (a -> b) -> a -> (a, b)
 toSnd f a = (a, f a)
 {-# INLINE toSnd #-}
 
-symmetricDifference :: Ord a => S.Set a -> S.Set a -> S.Set a
+symmetricDifference :: (Ord a) => S.Set a -> S.Set a -> S.Set a
 symmetricDifference x y = (x \\ y) <> (y \\ x)
 
 invertMap :: (Ord k, Ord v) => M.Map k v -> M.Map v k
 invertMap = M.fromList . map (\(k, v) -> (v, k)) . M.toList
+
+countTrue :: (a -> Bool) -> [a] -> Int
+countTrue = (length .) . filter
+
+fixedPoint :: (Eq a) => (a -> a) -> a -> a
+fixedPoint f x
+  | x == f x = x
+  | otherwise = fixedPoint f (f x)
