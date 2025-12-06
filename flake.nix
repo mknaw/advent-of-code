@@ -18,6 +18,9 @@
           # my-haskell-package development shell configuration
           devShell = {
             hlsCheck.enable = false;
+            tools = hp: {
+              inherit (hp) hoogle;
+            };
           };
 
           # What should haskell-flake add to flake outputs?
