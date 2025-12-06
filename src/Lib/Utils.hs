@@ -5,6 +5,7 @@ module Lib.Utils
     boolToInt,
     both,
     countTrue,
+    dropSpaces,
     indicesWhere,
     invertMap,
     fixedPoint,
@@ -106,3 +107,6 @@ fixedPoint :: (Eq a) => (a -> a) -> a -> a
 fixedPoint f x
   | x == f x = x
   | otherwise = fixedPoint f (f x)
+
+dropSpaces :: String -> String
+dropSpaces = filter $ not . isSpace

@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleContexts #-}
+
 module Lib.Parse
   ( Parser,
     parseDigit,
@@ -10,20 +12,20 @@ module Lib.Parse
   )
 where
 
+import Control.Monad (void)
 import Data.Text hiding (show)
 import Data.Void
 import Lib.Utils
+import Puzzles.Test
 import Text.Megaparsec
 import Text.Megaparsec.Char
 import Text.Megaparsec.Char.Lexer hiding (space)
-import Puzzles.Test
-import Control.Monad (void)
 
 type Parser = Parsec Void Text
 
-parseInput :: Parser a -> Text -> a
+parseInput :: (Stream s, Show s, Show (Token s)) => Parsec Void s a -> s -> a
 parseInput parser input =
-  case runParser parser "" input of
+  case runParser parser mempty input of
     Left err -> error $ show err
     Right x -> x
 
@@ -34,7 +36,7 @@ parseIntLines :: Parser [Int]
 parseIntLines = parseInt `sepEndBy` eol
 
 parseDigit :: Parser Int
-parseDigit = read . (:[]) <$> digitChar
+parseDigit = read . (: []) <$> digitChar
 
 parseDigitLines :: Parser [[Int]]
 parseDigitLines = (some parseDigit) `sepEndBy` eol
