@@ -50,3 +50,4 @@ arbitrary testing data can be added under `data/Y\d+/test/\d+[ab].txt`
 | '25 | 04 | ✔ | 7.101 ms | ✔ | 108.4 ms |
 | '25 | 05 | ✔ | 107.2 μs | ✔ | 2.297 μs |
 | '25 | 06 | ✔ | 11.89 μs | ✔ | 1.694 ms |
+| '25 | 07 | ✔ | 101.8 μs | ✔ | 120.9 μs |
