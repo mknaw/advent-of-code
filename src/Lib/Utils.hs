@@ -17,6 +17,7 @@ module Lib.Utils
     toSnd,
     trim,
     uncurry3,
+    uniquePairs,
     unpairify,
   )
 where
@@ -110,3 +111,7 @@ fixedPoint f x
 
 dropSpaces :: String -> String
 dropSpaces = filter $ not . isSpace
+
+uniquePairs :: [a] -> [(a, a)]
+uniquePairs [] = []
+uniquePairs (x : xs) = [(x, y) | y <- xs] ++ uniquePairs xs

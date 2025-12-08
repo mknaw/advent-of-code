@@ -31,9 +31,6 @@ day18bSolve =
 
 parse' :: T.Text -> Droplet
 parse' = parseInput . fmap S.fromList $ parseV3 `sepEndBy` newline
-  where
-    parseV3 :: Parser (V3 Int)
-    parseV3 = V3 <$> parseInt <* "," <*> parseInt <* "," <*> parseInt
 
 (<->) :: V3 Int -> V3 Int -> Int
 V3 x1 y1 z1 <-> V3 x2 y2 z2 = abs (x1 - x2) + abs (y1 - y2) + abs (z1 - z2)

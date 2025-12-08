@@ -44,6 +44,7 @@ common common-options
         , extended-reals >= 0.2
         , filepath >=1.4 && <1.6
         , fin >=0.2 && <0.4
+        , heap >= 1.0.4
         , linear >=1.22 && <1.24
         , listsafe >=0.1.0 && <0.1.1
         , lens >=5.2 && <5.4
@@ -131,6 +132,7 @@ library
         Puzzles.Y25.Day05
         Puzzles.Y25.Day06
         Puzzles.Y25.Day07
+        Puzzles.Y25.Day08
 
 executable aoc-exe
     import:           common-options

@@ -9,6 +9,7 @@ module Lib.Parse
     parseIntLines,
     parseTestCase,
     parseTestCases,
+    parseV3,
   )
 where
 
@@ -16,6 +17,7 @@ import Control.Monad (void)
 import Data.Text hiding (show)
 import Data.Void
 import Lib.Utils
+import Linear.V3
 import Puzzles.Test
 import Text.Megaparsec
 import Text.Megaparsec.Char
@@ -40,6 +42,9 @@ parseDigit = read . (: []) <$> digitChar
 
 parseDigitLines :: Parser [[Int]]
 parseDigitLines = (some parseDigit) `sepEndBy` eol
+
+parseV3 :: Parser (V3 Int)
+parseV3 = V3 <$> parseInt <* "," <*> parseInt <* "," <*> parseInt
 
 parseTestCase :: Parser TestCase
 parseTestCase = do
